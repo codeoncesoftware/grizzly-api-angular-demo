@@ -1,2 +1,2 @@
-# grizzly-api-angular-starter
-Starter Kit for Angular App using Grizzly API
+# grizzly-api-angular-starter-demo
+An Angular Demo based on Grizzly API as backend
