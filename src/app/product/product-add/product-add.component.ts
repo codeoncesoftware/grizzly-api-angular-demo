@@ -16,16 +16,18 @@ export class ProductAddComponent implements OnInit {
 
   createForm() {
     this.angForm = this.fb.group({
-      ProductName: ['', Validators.required ],
-      ProductDescription: ['', Validators.required ],
-      ProductPrice: ['', Validators.required ]
+      ProductName: ['', Validators.required],
+      ProductDescription: ['', Validators.required],
+      ProductPrice: ['', Validators.required]
     });
   }
 
   addProduct(ProductName, ProductDescription, ProductPrice) {
-    this.ps.addProduct(ProductName, ProductDescription, ProductPrice);
-    this.angForm.reset();
-    console.log('Product Added');
+    this.ps.addProduct(ProductName, ProductDescription, ProductPrice)
+      .subscribe(res => {
+        this.angForm.reset();
+        console.log('Product Added');
+      });
   }
 
   ngOnInit() {

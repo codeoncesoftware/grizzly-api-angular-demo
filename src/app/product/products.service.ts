@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import Product from './Product';
+import { environment } from '@env/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  uri = 'http://dwk5c1lsnem8l.cloudfront.net/runtime/5da8831ec420a8000180e345/api/products';
+  private url: string = environment.backendUrl + '/api/products';
 
   constructor(private http: HttpClient) { }
 
@@ -19,22 +20,19 @@ export class ProductsService {
       ProductDescription,
       ProductPrice
     };
-    this.http.post(this.uri + '/add', obj)
-        .subscribe(res => {
-          console.log('Done');
-        });
+    return this.http.post(this.url + '/add', obj);
   }
 
   getProducts(): Observable<Product[]> {
     return this
-           .http
-           .get<Product[]>(this.uri + '/all');
+      .http
+      .get<Product[]>(this.url + '/all');
   }
 
   editProduct(id) {
     return this
-            .http
-            .get(this.uri + '/edit/' + id);
+      .http
+      .get(this.url + '/edit/' + id);
   }
 
   updateProduct(ProductName, ProductDescription, ProductPrice, id) {
@@ -45,12 +43,12 @@ export class ProductsService {
     };
     return this
       .http
-      .post(this.uri + '/update/' + id, obj);
+      .post(this.url + '/update/' + id, obj);
   }
 
   deleteProduct(id) {
     return this
-              .http
-              .delete(this.uri + '/delete/' + id);
+      .http
+      .delete(this.url + '/delete/' + id);
   }
 }
