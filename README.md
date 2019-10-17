@@ -1,2 +1,2 @@
-# grizzly-api-angular-starter-demo
+# grizzly-api-angular-demo
 An Angular Demo based on Grizzly API as backend
